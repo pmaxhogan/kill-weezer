@@ -239,7 +239,7 @@
 
   let won = false;
   let ignoreNext = false;
-  const shot = new Audio('gunshot.mp3');
+  new Audio('gunshot.mp3');
   const shoot = e => {
       if(ignoreNext){
           ignoreNext = false;
@@ -250,7 +250,7 @@
       }
       handleMove(e);
       const member = e.path[0];
-      shot.play();
+      (new Audio('gunshot.mp3')).play();
       if(member.classList.contains("member")){
           document.querySelector("#member-" + member.id.slice(2)).classList.add("dead");
           if(!document.querySelector("[id^=member]:not(.dead)") && !won){
