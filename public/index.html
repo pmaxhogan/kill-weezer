@@ -249,7 +249,7 @@
           ignoreNext = true;
       }
       handleMove(e);
-      const member = e.path[0];
+      const member = e.path ? e.path[0] : e.target;
       (new Audio('gunshot.mp3')).play();
       if(member.classList.contains("member")){
           document.querySelector("#member-" + member.id.slice(2)).classList.add("dead");
