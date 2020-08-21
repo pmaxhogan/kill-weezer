@@ -228,8 +228,14 @@
 
   const handleMove = (e) => {
       const gun = document.querySelector("#gun");
-      const x = (e.touches ? e.touches[0].pageX : e.layerX) * scaleFactor;
-      const y = (e.touches ? e.touches[0].pageY : e.layerY) * scaleFactor;
+      let x = (e.touches ? e.touches[0].pageX : e.layerX);
+      let y = (e.touches ? e.touches[0].pageY : e.layerY);
+
+      if(!navigator.userAgent.includes("Gecko/")){
+        x *= scaleFactor;
+        y *= scaleFactor;
+      }
+      console.log(x, y)
 
       gun.style.left = x + "px";
       gun.style.top = y + "px";
