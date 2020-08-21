@@ -3,7 +3,7 @@
   "short_name": "Kill Weezer",
   "lang": "en-US",
   "start_url": "/",
-  "display": "minimal-ui",
+  "display": "fullscreen",
   "theme_color": "#038fcb",
   "icons": [
     {
