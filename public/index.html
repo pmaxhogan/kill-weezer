@@ -1,0 +1,278 @@
+<html>
+<head>
+  <link rel="manifest" href="manifest.json">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Kill Weezer">
+  <meta name="apple-mobile-web-app-title" content="Kill Weezer">
+  <meta name="theme-color" content="#038fcb">
+  <meta name="msapplication-navbutton-color" content="#038fcb">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="msapplication-starturl" content="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="icon" sizes="512x512" href="/icons/icon.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon.png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* latin */
+    @font-face {
+      font-family: 'Permanent Marker';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: local('Permanent Marker Regular'), local('PermanentMarker-Regular'), url(/font.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    body{
+      margin: 0;
+      touch-action: none;
+    }
+    main{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-origin: top left;
+      width: 1080px;
+      height: 1053px;
+      overflow: hidden;
+    }
+    main > *{
+      height: 1053px;
+      width: 1080px;
+    }
+    img{
+      user-select: none;
+    }
+    .screen{
+      position: relative;
+    }
+    #start-msg,#sound-msg {
+      position: relative;
+      cursor: pointer;
+      display: inline;
+    }
+    #start-msg{
+      top: 440px;
+      left: 120px;
+    }
+    #start, #album{
+      max-height: 100%;
+      position: relative;
+      overflow: hidden;
+      height: 1053px;
+    }
+    #album > *,#album-cliptargets > *, #gun,#main-game .kill{
+      position: absolute;
+      cursor: none;
+      top: 0;
+    }
+    .kill, #start-msg, #sound-msg, #timer{
+      font-family: 'Permanent Marker', cursive;
+      font-size: 110px;
+    }
+    #sound-msg{
+      font-size: 30px;
+      top: 464px;
+      left: 360px;
+    }
+    #timer{
+      margin-top: -15px;
+      font-size: 50px;
+    }
+    #timer.big-timer{
+      top: 464px;
+      left: 310px;
+      font-size: 90px;
+    }
+    .kill{
+      color: #141414;
+      font-weight: bold;
+      position: absolute;
+    }
+    .kill-inner{
+      position: absolute;
+      top: -30px;
+      right: 440px;
+    }
+    body{
+      overflow: hidden;
+    }
+    #album-cliptargets img{
+      opacity: 0;
+    }
+    #gun,#win-msg{
+      pointer-events: none;
+    }
+    #win-msg{
+      color: white;
+      z-index: 1;
+      text-shadow: 0px 0 9px #000000, 0px 0 9px #000000;
+      font-family: Impact,Charcoal,sans-serif;
+      text-align: center;
+      line-height: 918px;
+      width: 920px;
+      left: 50px;
+      top: -390px;
+      letter-spacing: 4;
+      font-size: 80px;
+    }
+    #album .dead{
+      filter: invert(40%) brightness(40%) sepia(150%) hue-rotate(-50deg) saturate(400%) contrast(2);
+      top: 1000px;
+      transition: top .5s cubic-bezier(0.9, 0.24, 0.88, 0.7);
+    }
+    #i-1{
+      clip-path: polygon(4% 99%, 5% 88%, 3% 78%, 0% 74%, 0% 54%, 2% 46%, 6% 44%, 9% 42%, 8% 37%, 8% 33%, 11% 31%, 15% 32%, 16% 36%, 15% 39%, 16% 43%, 20% 45%, 22% 47%, 24% 52%, 24% 57%, 24% 67%, 23% 74%, 21% 78%, 21% 84%, 20% 90%, 21% 96%, 20% 100%, 14% 100%, 14% 94%, 14% 89%, 12% 83%, 11% 89%, 11% 93%, 11% 99%, 11% 100%, 11% 100%);
+    }
+    #i-2{
+      clip-path: polygon(28% 100%, 29% 91%, 30% 77%, 29% 69%, 27% 64%, 27% 61%, 24% 59%, 28% 50%, 35% 47%, 35% 44%, 34% 42%, 34% 39%, 35% 37%, 38% 36%, 40% 36%, 42% 37%, 42% 39%, 42% 41%, 42% 43%, 41% 45%, 41% 47%, 42% 48%, 45% 49%, 47% 51%, 48% 52%, 48% 61%, 47% 62%, 45% 66%, 46% 67%, 46% 69%, 46% 71%, 46% 73%, 46% 76%, 46% 77%, 45% 80%, 45% 82%, 45% 84%, 45% 87%, 45% 89%, 45% 91%, 45% 93%, 44% 96%, 44% 98%, 44% 100%, 37% 100%, 38% 98%, 38% 94%, 39% 91%, 38% 87%, 38% 84%, 38% 81%, 37% 82%, 37% 86%, 37% 88%, 37% 89%, 37% 91%, 37% 93%, 37% 94%, 36% 96%, 36% 98%, 36% 99%, 36% 100%);
+    }
+    #i-3{
+      clip-path: polygon(55% 100%, 55% 94%, 55% 90%, 55% 86%, 54% 82%, 53% 78%, 53% 76%, 53% 73%, 53% 71%, 53% 67%, 52% 65%, 51% 62%, 51% 59%, 50% 55%, 51% 52%, 52% 48%, 54% 46%, 56% 45%, 58% 43%, 58% 43%, 60% 42%, 60% 41%, 58% 39%, 59% 36%, 59% 33%, 61% 32%, 63% 31%, 65% 32%, 66% 33%, 67% 36%, 66% 38%, 65% 41%, 65% 42%, 66% 44%, 67% 45%, 68% 46%, 70% 47%, 71% 48%, 72% 49%, 73% 51%, 74% 52%, 74% 54%, 74% 56%, 74% 61%, 74% 64%, 72% 67%, 71% 69%, 72% 70%, 72% 71%, 71% 72%, 71% 73%, 71% 74%, 71% 76%, 71% 77%, 70% 79%, 70% 82%, 70% 84%, 69% 87%, 69% 88%, 69% 89%, 70% 90%, 69% 93%, 70% 94%, 69% 95%, 69% 96%, 69% 98%, 70% 99%, 70% 100%, 64% 100%, 63% 96%, 63% 93%, 63% 89%, 62% 85%, 62% 80%, 62% 85%, 61% 89%, 61% 90%, 61% 91%, 61% 93%, 61% 94%, 61% 96%, 61% 98%, 61% 99%, 61% 100%);
+    }
+    #i-4{
+      clip-path: polygon(79% 100%, 79% 96%, 78% 94%, 78% 90%, 78% 90%, 78% 86%, 78% 83%, 78% 78%, 78% 76%, 78% 73%, 77% 70%, 77% 66%, 77% 63%, 77% 60%, 77% 59%, 76% 58%, 76% 54%, 77% 50%, 78% 48%, 80% 48%, 82% 47%, 83% 46%, 83% 44%, 84% 42%, 83% 41%, 83% 41%, 82% 39%, 82% 36%, 83% 34%, 85% 33%, 86% 33%, 87% 33%, 88% 34%, 90% 36%, 91% 37%, 91% 37%, 91% 39%, 90% 40%, 90% 42%, 89% 42%, 89% 44%, 89% 44%, 90% 46%, 92% 46%, 94% 47%, 95% 48%, 96% 49%, 96% 50%, 97% 51%, 97% 52%, 97% 53%, 98% 55%, 98% 56%, 98% 57%, 99% 57%, 96% 60%, 97% 62%, 97% 62%, 97% 65%, 97% 66%, 96% 69%, 96% 70%, 96% 72%, 96% 73%, 96% 73%, 96% 75%, 95% 76%, 95% 77%, 95% 79%, 95% 80%, 95% 81%, 95% 83%, 94% 86%, 94% 88%, 94% 89%, 94% 91%, 94% 92%, 94% 93%, 93% 93%, 92% 95%, 92% 96%, 92% 97%, 92% 99%, 92% 99%, 93% 100%, 92% 100%, 87% 100%, 87% 97%, 87% 95%, 87% 93%, 87% 91%, 88% 91%, 88% 89%, 87% 87%, 87% 84%, 86% 82%, 87% 80%, 86% 83%, 85% 85%, 85% 86%, 85% 87%, 85% 89%, 84% 91%, 84% 92%, 84% 93%, 84% 94%, 85% 95%, 84% 96%, 84% 96%, 84% 97%, 85% 98%, 85% 98%, 84% 100%, 84% 100%);
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div id="start" class="screen">
+    <div class="kill">
+      <div class="kill-inner">
+        kill
+      </div>
+      <img src="empty.png" draggable="false">
+    </div>
+    <div id="start-msg">Click to start!</div>
+    <br/>
+    <div id="sound-msg">(sound recommended)</div>
+  </div>
+  <div id="main-game" class="screen" hidden>
+    <div id="album">
+      <div class="kill">
+        <div id="kill-msg" class="kill-inner">
+          kill
+        </div>
+        <div id="win-msg" class="kill-inner" hidden>HOLY SH*T
+          YOU JUST KILLED WEEZER</div>
+        <img src="empty.png" draggable="false">
+      </div>
+      <img src="1.png" id="member-1">
+      <img src="2.png" id="member-2">
+      <img src="3.png" id="member-3">
+      <img src="4.png" id="member-4">
+      <div id="timer">0.00</div>
+    </div>
+    <div id="album-cliptargets">
+      <div class="kill">
+        <img src="empty.png" draggable="false">
+      </div>
+      <img src="1.png" class="member" id="i-1" draggable="false">
+      <img src="2.png" class="member" id="i-2" draggable="false">
+      <img src="3.png" class="member" id="i-3" draggable="false">
+      <img src="4.png" class="member" id="i-4" draggable="false">
+    </div>
+    <img id="gun" src="gun.png">
+  </div>
+</main>
+<script>
+  if('serviceWorker' in navigator) {
+      navigator.serviceWorker.register("./sw.js");
+  }
+  const playWhenPossible = async audioSource => {
+      try{
+          await audioSource.play();
+      }catch (e) {
+          const playIt = () => {
+              audioSource.play();
+              removeEventListener("keypress", playIt)
+              removeEventListener("click", playIt)
+          };
+          addEventListener("keypress", playIt);
+          addEventListener("click", playIt);
+      }
+  };
+
+  const start = document.querySelector("#start");
+  const timer = document.querySelector("#timer");
+  const main = document.querySelector("#main-game");
+  const win = document.querySelector("#win-msg");
+
+  let scaleFactor = 0;
+  onload = onresize = () => {
+      scaleFactor = 1 / Math.min(document.body.clientWidth / 1080, document.body.clientHeight / 1053);
+      document.querySelector("main").style.transform = 'scale('+ 1 / scaleFactor + ')';
+  }
+
+  let startTime = 0;
+
+  let timerInterval = setInterval(() => {
+      timer.innerText = ((Date.now() - startTime) / 1000).toFixed(2);
+  }, 0);
+
+  start.onclick = (e) => {
+    startTime = Date.now();
+    start.setAttribute("hidden", "hidden");
+    main.removeAttribute("hidden");
+    handleMove(e);
+  }
+
+  const handleMove = (e) => {
+      const gun = document.querySelector("#gun");
+      const x = (e.touches ? e.touches[0].pageX : e.layerX) * scaleFactor;
+      const y = (e.touches ? e.touches[0].pageY : e.layerY) * scaleFactor;
+
+      gun.style.left = x + "px";
+      gun.style.top = y + "px";
+  };
+
+  document.querySelector("#album-cliptargets").addEventListener("mousemove", handleMove);
+
+  let won = false;
+  let ignoreNext = false;
+  const shot = new Audio('gunshot.mp3');
+  const shoot = e => {
+      if(ignoreNext){
+          ignoreNext = false;
+          return;
+      }
+      if(e.touches){
+          ignoreNext = true;
+      }
+      handleMove(e);
+      const member = e.path[0];
+      shot.play();
+      if(member.classList.contains("member")){
+          document.querySelector("#member-" + member.id.slice(2)).classList.add("dead");
+          if(!document.querySelector("[id^=member]:not(.dead)") && !won){
+              win.removeAttribute("hidden");
+              clearInterval(timerInterval);
+              document.querySelector("#kill-msg").setAttribute("hidden", "hidden");
+              timer.innerText += " seconds";
+              timer.classList.add("big-timer");
+              const winAudio = new Audio('win.mp3');
+              winAudio.loop = true;
+              winAudio.play();
+              won = true;
+              score.pause();
+          }
+      }
+  };
+  document.querySelector("#album-cliptargets").addEventListener("mousedown", shoot);
+  document.querySelector("#album-cliptargets").addEventListener("touchstart", shoot);
+  ondrag = e => {
+      e.preventDefault();
+      return false;
+  };
+
+  const score = new Audio('score.mp3');
+  score.loop = true;
+  playWhenPossible(score);
+</script>
+</body>
+</html>

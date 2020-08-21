@@ -1,0 +1,14 @@
+{
+  "name": "Kill Weezer",
+  "short_name": "Kill Weezer",
+  "lang": "en-US",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "theme_color": "#038fcb",
+  "icons": [
+    {
+      "src": "/icons/icon.png",
+      "sizes": "512x512"
+    }
+  ]
+}
